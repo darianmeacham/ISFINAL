@@ -1,0 +1,142 @@
+/* ===== BASE STYLING ===== */
+body {
+    background: linear-gradient(to bottom, #f5fff5, #e0f2f1);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0 20px;
+    line-height: 1.6;
+}
+
+/* Universal transitions */
+* {
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background-color: #a5d6a7;
+    padding: 21px 14px;
+    border-bottom: 3px solid #388e3c;
+    text-align: center;
+    font-size: 1.8em;
+    color: #1b5e20;
+    font-family: 'Playfair Display', serif;
+    animation: glow 2s infinite alternate;
+}
+
+/* Glowing header animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #a5d6a7;
+    }
+    100% {
+        text-shadow: 0 0 20px #66bb6a, 0 0 10px #388e3c;
+    }
+}
+
+/* ===== MAIN BODY ===== */
+.mainbody {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #cfd8dc;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin: 30px auto;
+    max-width: 900px;
+    font-size: larger
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: linear-gradient(to right, #a5d6a7, #81c784);
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 15px;
+    border-top: 3px solid #388e3c;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* ===== RETURN BUTTON ===== */
+.return {
+    margin: 20px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.return a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.return a:hover {
+    text-decoration: underline;
+    color: #1b5e20;
+}
+
+/* ===== IMAGES ===== */
+img {
+    display: block;
+    margin: 12px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== LISTS ===== */
+ol, ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* ===== HIGHLIGHT BOX ===== */
+.highlight {
+    background-color: #f1f8e9;
+    border-left: 5px solid #81c784;
+    padding: 15px;
+    margin: 30px 0;
+    font-style: italic;
+    border-radius: 6px;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #2e7d32;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1b5e20;
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .mainbody {
+        padding: 15px;
+    }
+
+    .footer {
+        font-size: 0.8em;
+    }
+}

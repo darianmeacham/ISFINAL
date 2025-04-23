@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Match Challenge (with Timer)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #222;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #colorWord {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 20px;
+    }
+
+    #score, #timer {
+      font-size: 24px;
+      margin: 5px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      font-size: 2em;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      transition: 0.2s;
+    }
+
+    .buttons button:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    #gameOver {
+      font-size: 32px;
+      color: red;
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Color Match Challenge</h1>
+  <div id="colorWord">Red</div>
+  <div id="score">Score: 0</div>
+  <div id="timer">Time: 30</div>
+  <div class="buttons">
+    <button id="trueBtn">✔</button>
+    <button id="falseBtn">✘</button>
+  </div>
+  <div id="gameOver">Time's Up! Final Score: <span id="finalScore"></span></div>
+
+  <script>
+    const colors = ["Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink"];
+    const colorValues = {
+      Red: "red",
+      Blue: "blue",
+      Green: "green",
+      Yellow: "yellow",
+      Purple: "purple",
+      Orange: "orange",
+      Pink: "pink"
+    };
+
+    const wordEl = document.getElementById("colorWord");
+    const scoreEl = document.getElementById("score");
+    const timerEl = document.getElementById("timer");
+    const gameOverEl = document.getElementById("gameOver");
+    const finalScoreEl = document.getElementById("finalScore");
+    const trueBtn = document.getElementById("trueBtn");
+    const falseBtn = document.getElementById("falseBtn");
+
+    let correctColor = false;
+    let score = 0;
+    let timeLeft = 30;
+    let gameRunning = true;
+
+    function newRound() {
+      const textColor = colors[Math.floor(Math.random() * colors.length)];
+      const actualColor = colors[Math.floor(Math.random() * colors.length)];
+      correctColor = textColor === actualColor;
+
+      wordEl.textContent = textColor;
+      wordEl.style.color = colorValues[actualColor];
+    }
+
+    function endGame() {
+      gameRunning = false;
+      trueBtn.disabled = true;
+      falseBtn.disabled = true;
+      gameOverEl.style.display = "block";
+      finalScoreEl.textContent = score;
+    }
+
+    function checkAnswer(answer) {
+      if (!gameRunning) return;
+      if (answer === correctColor) {
+        score++;
+        scoreEl.textContent = "Score: " + score;
+        newRound();
+      } else {
+        endGame();
+      }
+    }
+
+    trueBtn.onclick = () => checkAnswer(true);
+    falseBtn.onclick = () => checkAnswer(false);
+
+    function startTimer() {
+      const interval = setInterval(() => {
+        if (!gameRunning) {
+          clearInterval(interval);
+          return;
+        }
+
+        timeLeft--;
+        timerEl.textContent = "Time: " + timeLeft;
+
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          endGame();
+        }
+      }, 1000);
+    }
+
+    newRound();
+    startTimer();
+  </script>
+</body>
+</html>
